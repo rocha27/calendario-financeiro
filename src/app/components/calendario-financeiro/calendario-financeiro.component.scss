@@ -1,0 +1,41 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Ocupa toda a altura da tela */
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.valor-container {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+
+  label {
+    margin-right: 10px;
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+
+  .valor-input {
+    padding: 8px 12px;
+    font-size: 1.1rem;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    width: 200px;
+  }
+}
+
+.calendar-container {
+  flex: 1; /* Ocupa todo o espaço restante */
+  min-height: 0; /* Fix para flexbox no Chrome */
+
+  ::ng-deep .p-calendar {
+    height: 100%;
+
+    .p-datepicker {
+      width: 100%;
+      height: calc(100% - 40px);
+    }
+  }
+}

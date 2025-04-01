@@ -1,0 +1,24 @@
+<div class="container">
+  <!-- Campo do valor no topo -->
+  <div class="valor-container">
+    <label for="valorTotal">Valor Total (R$):</label>
+    <input
+      type="number"
+      id="valorTotal"
+      [(ngModel)]="valorTotal"
+      class="valor-input"
+    >
+  </div>
+
+  <!-- Calendário ocupando o resto da tela -->
+  <div class="calendar-container">
+    <p-calendar
+      [(ngModel)]="dataSelecionada"
+      [inline]="true"
+      [showWeek]="false"
+      dateFormat="dd/mm/yy"
+      [style]="{ width: '100%', height: '100%' }"
+      [showButtonBar]="true">
+    </p-calendar>
+  </div>
+</div>
