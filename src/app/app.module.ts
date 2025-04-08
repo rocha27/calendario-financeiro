@@ -13,6 +13,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { CalendarioTraduzidoService } from './services/calendario-traduzido.service';
 import { PrimeNGConfig } from 'primeng/api';
+import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 
 @NgModule({
   declarations: [
@@ -27,9 +28,11 @@ import { PrimeNGConfig } from 'primeng/api';
     CalendarModule,
     DialogModule,
     InputTextModule,
-    ButtonModule
+    ButtonModule,
+    NgxMaskDirective,
+    NgxMaskPipe
   ],
-  providers: [],
+  providers: [provideNgxMask()],
   bootstrap: [AppComponent]
 })
 export class AppModule {

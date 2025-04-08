@@ -1,7 +1,7 @@
 .container {
   display: flex;
   flex-direction: column;
-  height: 100vh; /* Ocupa toda a altura da tela */
+  height: 100vh;
   padding: 20px;
   box-sizing: border-box;
 }
@@ -23,19 +23,99 @@
     border: 2px solid #ccc;
     border-radius: 4px;
     width: 200px;
+    transition: border-color 0.3s;
+
+    &:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.3);
+    }
+
+    &:invalid {
+      border-color: #ef4444;
+    }
   }
 }
 
 .calendar-container {
-  flex: 1; /* Ocupa todo o espaço restante */
-  min-height: 0; /* Fix para flexbox no Chrome */
+  flex: 1;
+  min-height: 0;
+}
 
-  ::ng-deep .p-calendar {
+::ng-deep {
+  .p-calendar {
     height: 100%;
 
     .p-datepicker {
       width: 100%;
       height: calc(100% - 40px);
+      padding: 0;
+
+      table {
+        width: 100%;
+        height: 25em;
+
+        td {
+          padding: 0;
+          border: none;
+
+          &.p-datepicker-other-month {
+            visibility: hidden;
+          }
+
+          > span {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 0;
+
+            .dia-com-valor {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+              height: 100%;
+              width: 100%;
+
+              .dia {
+                font-size: 1rem;
+              }
+
+              .valor {
+                font-size: 0.7rem;
+                color: #22C55E;
+                margin-top: 2px;
+              }
+            }
+
+            .dia-oculto {
+              visibility: hidden;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 10px;
+  }
+
+  .valor-container {
+    flex-direction: column;
+    align-items: flex-start;
+
+    label {
+      margin-bottom: 5px;
+    }
+
+    .valor-input {
+      width: 100%;
     }
   }
 }

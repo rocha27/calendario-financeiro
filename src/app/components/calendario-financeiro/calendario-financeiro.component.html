@@ -1,24 +1,43 @@
 <div class="container">
-  <!-- Campo do valor no topo -->
   <div class="valor-container">
     <label for="valorTotal">Valor Total (R$):</label>
     <input
-      type="number"
+      type="text"
       id="valorTotal"
-      [(ngModel)]="valorTotal"
+      name="valorTotal"
       class="valor-input"
-    >
+      mask="separator.2"
+      thousandSeparator="."
+      decimalMarker=","
+      prefix="R$ "
+      [dropSpecialCharacters]="true"
+      [(ngModel)]="valorTotalMensal"
+      (ngModelChange)="onValorChange($event)"
+      placeholder="R$ 0,00"
+    />
   </div>
 
-  <!-- Calendário ocupando o resto da tela -->
   <div class="calendar-container">
     <p-calendar
-      [(ngModel)]="dataSelecionada"
-      [inline]="true"
-      [showWeek]="false"
-      dateFormat="dd/mm/yy"
-      [style]="{ width: '100%', height: '100%' }"
-      [showButtonBar]="true">
-    </p-calendar>
+    [(ngModel)]="dataSelecionada"
+    (ngModelChange)="onDataChange($event)"
+    [inline]="true"
+    [showWeek]="false"
+    dateFormat="dd/mm/yy"
+    [showOtherMonths]="false"
+    [selectOtherMonths]="false"
+    [showButtonBar]="false"
+    [style]="{ width: '100%', height: '100%' }">
+    <ng-template pTemplate="date" let-date>
+      <div class="dia-com-valor" *ngIf="shouldShowDate(date); else emptyDay">
+        <span class="dia">{{ date.day }}</span>
+        <span class="valor">{{ getValorDoDia(date) }}</span>
+      </div>
+      <ng-template #emptyDay>
+        <div class="dia-oculto"></div>
+      </ng-template>
+    </ng-template>
+  </p-calendar>
+
   </div>
 </div>
